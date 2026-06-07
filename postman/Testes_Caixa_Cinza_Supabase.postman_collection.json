@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "teste-caixa-cinza-supabase",
+		"name": "Testes Caixa Cinza - Supabase Auth",
+		"description": "Coleção de testes de caixa cinza para a API de autenticação do Supabase. Contém cenários de login válido, senha incorreta, usuário inexistente, campos vazios e credenciais inválidas.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CT-001 - Login Válido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/v1/token?grant_type=password",
+					"host": ["{{base_url}}"],
+					"path": ["auth", "v1", "token"],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				},
+				"description": "Teste de login com credenciais válidas. Espera-se Status 200 e retorno do access_token."
+			},
+			"response": []
+		},
+		{
+			"name": "CT-002 - Senha Incorreta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"senhaerrada\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/v1/token?grant_type=password",
+					"host": ["{{base_url}}"],
+					"path": ["auth", "v1", "token"],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				},
+				"description": "Teste de login com senha incorreta. Espera-se Status 400 e mensagem de erro de autenticação."
+			},
+			"response": []
+		},
+		{
+			"name": "CT-003 - Usuário Inexistente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"naoexiste999@outlook.com\",\n  \"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/v1/token?grant_type=password",
+					"host": ["{{base_url}}"],
+					"path": ["auth", "v1", "token"],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				},
+				"description": "Teste de login com usuário inexistente. Espera-se Status 400 e mensagem de acesso negado."
+			},
+			"response": []
+		},
+		{
+			"name": "CT-004 - Campos Vazios",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"\",\n  \"password\": \"\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/v1/token?grant_type=password",
+					"host": ["{{base_url}}"],
+					"path": ["auth", "v1", "token"],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				},
+				"description": "Teste de login com campos vazios. Espera-se Status 400 e mensagem de erro de validação."
+			},
+			"response": []
+		},
+		{
+			"name": "CT-005 - Credenciais Inválidas",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"emailinvalido\",\n  \"password\": \"abc\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/v1/token?grant_type=password",
+					"host": ["{{base_url}}"],
+					"path": ["auth", "v1", "token"],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				},
+				"description": "Teste de login com credenciais completamente inválidas. Espera-se Status 400 e mensagem de erro."
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,6 @@
+ID do Teste,Cenário,Entrada,Resultado Esperado,Resultado Obtido,Status,Observações
+CT-001,Login válido,"email: teste@gmail.com / senha: 12345",Status 200 + access_token,"Status 200 - access_token retornado com sucesso",Sucesso,"Login realizado com sucesso. Token JWT retornado contendo informações do usuário."
+CT-002,Senha incorreta,"email: teste@gmail.com / senha: senhaerrada",Erro de autenticação (400),"Status 400 - Invalid login credentials",Sucesso,"A API retornou erro 400 com error_code: invalid_credentials conforme esperado."
+CT-003,Usuário inexistente,"email: naoexiste999@outlook.com / senha: 12345",Acesso negado (400),"Status 400 - Invalid login credentials",Sucesso,"A API retornou erro 400 com error_code: invalid_credentials. A mensagem é genérica por segurança."
+CT-004,Campos vazios,"email: (vazio) / senha: (vazio)",Erro de validação (400),"Status 400 - missing email or phone",Sucesso,"A API retornou erro 400 com error_code: validation_failed conforme esperado."
+CT-005,Credenciais inválidas,"email: emailinvalido / senha: abc",Mensagem de erro (400),"Status 400 - Invalid login credentials",Sucesso,"A API retornou erro 400 com error_code: invalid_credentials para formato de e-mail inválido."
